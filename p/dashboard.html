@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Storage </title>
+</head>
+<body>
+    <h1>I am in firebase class.<span id=""></span></h1>
+    <input type="text" id="Named" placeholder="name">
+    <input type="text" id="Aged" placeholder="Age">
+    <button id="submitBtn">Submit </button><br> 
+
+    <h1>Cloud Storage</h1>
+    <input type="file">
+    <input type="send media" placeholder="media">
+    <button onclick="sendMedia()" >Send media </button>
+</body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+    import { getDatabase, set, ref, onValue } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+    apiKey: "AIzaSyAAZtMhBGoLVoBoU7NWjBA3i9AJYCIUFHI",
+    authDomain: "marketplace-1afb4.firebaseapp.com",
+    projectId: "marketplace-1afb4",
+    storageBucket: "marketplace-1afb4.appspot.com",
+    messagingSenderId: "127555572386",
+    appId: "1:127555572386:web:2b835a462dc6b0c76f7dfb",
+    measurementId: "G-M9TE60ZV1G",
+    databaseURL: "https://marketplace-1afb4-default-rtdb.firebaseio.com",
+    };
+
+  // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    // const analytics = getAnalytics(app);
+
+    const submitBtn = document.getElementById('sumbit')
+    submitBtn.addEventListener('click', () =>{
+    const myName = document.getElementById('named').value
+    const myAge = document.getElementById('age').value
+
+    let userObj = {
+    myName,
+    myAge, 
+    date: new Date().toLocaleTimeString(),
+    date: new Date().toLocaleDateString
+    }
+    if (myName === '' || myAge ===''){
+    alert('when you are not blind, come on fill that thing')
+    }else {
+    alert('yabo, you are the guy')
+    console.log(userObj);    
+    let dbRef = ref(datebase, 'user/3')
+    set (dbRef, userObj)
+    }
+    })
+    let newRef = ref(datebaase, "user")
+      onValue(newRef, (snapshot) =>{
+        const date = snapshot.val()
+        console.log(date);
+        date.map((user, index)=>{
+          show.innerHTML +=`
+          <h3> ${Name} <h3>
+          <h3> ${Name} <h3>
+          <small> ${user.time} <small>
+          <small> ${user.date} <small>
+            `
+        })
+      })
+
+const sendMedia = () => {
+  let media = (document.getElementById('fily').file)[0] 
+  console.log(media);
+}
+window.sendMedia = sendMedia 
+</script>
+</html>
